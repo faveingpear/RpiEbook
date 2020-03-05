@@ -155,7 +155,7 @@ class menu():
             d.addText("1) Read A book! 2) Settings!", 10, 0)
             d.drawScreen()
 
-d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
 b = book()
 r = reading()
 m = menu()
