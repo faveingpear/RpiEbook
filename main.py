@@ -13,6 +13,7 @@ class inkdisplay():
     himage = ""
     draw = ""
 
+    # Ya set bois
     def setFont(self,newFont):
         self.font = newFont
 
@@ -22,12 +23,13 @@ class inkdisplay():
     def setFontsDir(self, newFontDir):
         self.fontsdir = newFontDir
 
-    def newImage(self):
+    # The do some cool stuffers
+    def newScreen(self):
         self.himage = Image.new('1', (self.epd.height, self.epd.width), 255)
         self.draw = ImageDraw.Draw(self.himage)
 
-    def addText(self, text):
-        self.draw.text((10, 0), text, font = self.font, fill = 0)
+    def addText(self, text, x, y):
+        self.draw.text((x, y), text, font = self.font, fill = 0)
 
     def drawScreen(self):
         self.epd.display(self.epd.getbuffer(self.himage))
@@ -35,6 +37,7 @@ class inkdisplay():
     def clear(self):
         self.epd.Clear(0xFF)
 
+    # Init
     def __init__(self, newEpd, newFontsDir, newFont):
         self.epd = newEpd
         self.epd.init()
@@ -43,8 +46,8 @@ class inkdisplay():
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
-d.newImage()
-d.addText("Testing")
+d.newScreen()
+d.addText("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.", 10, 0)
 d.drawScreen()
 d.clear()
 
