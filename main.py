@@ -182,7 +182,8 @@ class menu():
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
 
-m = menu(keys)
+k = keys
+m = menu(k)
 
 m.setOptions({"Read A Book!", "Settings"})
 m.setOptionsCommands({m.readABook(), m.settings()})
