@@ -1,6 +1,7 @@
 import sys
 import os
 import textwrap
+import glob
 
 from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
@@ -58,7 +59,7 @@ class inkdisplay():
         self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
-        self.wrapper = textwrap.TextWrapper(width=47)
+        self.wrapper = textwrap.TextWrapper(width=48)
 
 class page():
 
@@ -133,7 +134,7 @@ class menu():
 
     def setModeToFileSelection(self):
         self.mode = 1
-        r.startreading(book, "Spice and wolf", "Books/This is a test of a very long string of.txt")
+        r.startreading(book, "Foxy Keith.txt", "Foxy Keith.txt")
 
     def executeOption(self, number):
         if self.mode == 0:
@@ -149,7 +150,7 @@ class menu():
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
-            d.addText("1) Read A book!\n2) Settings!", 10, 0)
+            d.addText("1) Read A book! 2) Settings!", 10, 0)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
@@ -157,6 +158,7 @@ b = book()
 r = reading()
 m = menu()
 m.displayOptions()
+
 def mainloop():
         key1 = 5
         key2 = 6
