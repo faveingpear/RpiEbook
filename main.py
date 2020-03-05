@@ -135,7 +135,7 @@ class menu():
 
     def setModeToFileSelection(self):
         self.mode = 1
-        r.startreading(book, "Foxy Keith.txt", "Foxy Keith.txt")
+        r.startreading(book, "Foxy Keith.txt", "Books/Foxy Keith.txt")
 
     def executeOption(self, number):
         if self.mode == 0:
