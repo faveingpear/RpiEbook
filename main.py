@@ -116,56 +116,124 @@ class book():
 
         file.close()
 
+class keys():
+
+    key1 = 5
+    key2 = 6
+    key3 = 13
+    key4 = 19
+
+    GPIO.setup(key1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(key2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(key3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(key4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    def startLoop(self):
+
+        while True:
+            key1state = GPIO.input(self.key1)
+            key2state = GPIO.input(self.key2)
+            key3state = GPIO.input(self.key3)
+            key4state = GPIO.input(self.key4)
+
+            if key1state == False:
+                return 1
+            if key2state == False:
+                return 2
+            if key3state == False:
+                return 3
+            if key4state == False:
+                return 4
+
+class menu():
+
+    options = {
+    
+    }
+    optionsCommand = {
+
+    }
+    currentDiplay = {
+
+    }
+
+    buttons = ""
+
+    def setOptions(self, options):
+        self.options = options
+
+    def setOptionsCommands(self, optionsCommand):
+        self.optionsCommand = optionsCommand
+
+    def settings(self):
+        print("fill")
+
+    def readABook(self):
+        print("fill")
+
+    def mainloop(self):
+        responce = self.buttons.startLoop()
+
+        self.optionsCommand[responce]()
+
+    def __init__(self, buttonClass):
+        self.buttons = buttonClass
+
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
+
+m = menu(keys)
+
+m.setOptions({"Read A Book!", "Settings"})
+m.setOptionsCommands({m.readABook(), m.settings()})
 
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
 
-pageNumber = 0
+# pageNumber = 0
 
-d.newScreen()
-d.addText(b.getTextOfPage(pageNumber), 10, 0)
-d.drawScreen()
+# d.newScreen()
+# d.addText(b.getTextOfPage(pageNumber), 10, 0)
+# d.drawScreen()
 
-key1 = 5
-key2 = 6
-key3 = 13
-key4 = 19
+# key1 = 5
+# key2 = 6
+# key3 = 13
+# key4 = 19
 
-GPIO.setup(key1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(key2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(key3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(key4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(key1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(key2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(key3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(key4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-while True:
-        key1state = GPIO.input(key1)
-        key2state = GPIO.input(key2)
-        key3state = GPIO.input(key3)
-        key4state = GPIO.input(key4)
+# while True:
+#         key1state = GPIO.input(key1)
+#         key2state = GPIO.input(key2)
+#         key3state = GPIO.input(key3)
+#         key4state = GPIO.input(key4)
 
-        if key1state == False:
-            pageNumber = pageNumber + 1
-            d.newScreen()
-            d.addText(b.getTextOfPage(pageNumber), 10, 0)
-            d.drawScreen()
-            time.sleep(0.2)
-        if key2state == False:
-            d.clear()
-            time.sleep(0.2)
-        if key3state == False:
-            b.changeBook(page, "Okkami to stuff", "Books/This is spice and wolf.txt")
-            pageNumber = 0
-            d.newScreen()
-            d.addText(b.getTextOfPage(pageNumber), 10, 0)
-            d.drawScreen()
-            time.sleep(0.2)
-        if key4state == False:
-            pageNumber = pageNumber - 1
-            d.newScreen()
-            d.addText(b.getTextOfPage(pageNumber), 10, 0)
-            d.drawScreen()
-            time.sleep(0.2)
+#         if key1state == False:
+#             pageNumber = pageNumber + 1
+#             d.newScreen()
+#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
+#             d.drawScreen()
+#             time.sleep(0.2)
+#         if key2state == False:
+#             d.clear()
+#             time.sleep(0.2)
+#         if key3state == False:
+#             b.changeBook(page, "Okkami to stuff", "Books/This is spice and wolf.txt")
+#             pageNumber = 0
+#             d.newScreen()
+#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
+#             d.drawScreen()
+#             time.sleep(0.2)
+#         if key4state == False:
+#             pageNumber = pageNumber - 1
+#             d.newScreen()
+#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
+#             d.drawScreen()
+#             time.sleep(0.2)
 
 # epd = epd2in7.EPD()
 
