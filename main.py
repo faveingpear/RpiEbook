@@ -204,10 +204,18 @@ class menu():
         self.mode = 1
 
     def fileSelectScreenUp(self):
-        print("up")
+        self.currentDisplay = self.currentDisplay + 1
+
+        self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
+
+        m.displayOptions()
 
     def fileSelectScreenDown(self):
-        print("down")
+        self.currentDisplay = self.currentDisplay - 1
+
+        self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
+
+        m.displayOptions()
 
     def currentDisplayToString(self):
 
