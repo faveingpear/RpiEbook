@@ -30,6 +30,17 @@ class inkdisplay():
 
     def addText(self, text, x, y):
 
+        counter = 0
+
+        for i in range(text):
+            counter = counter + 1
+
+            if counter == 20:
+                text[i] = "\n"
+                counter = 0
+
+        print(text)
+
         self.draw.text((x, y), text, font = self.font, fill = 0)
 
     def drawScreen(self):
