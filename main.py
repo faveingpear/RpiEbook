@@ -89,6 +89,7 @@ class book():
         count = ""
 
         for i in range(len(text)):
+            count = count + 1
             if count == 50:
                 text[i] = "だ" # Use other thing or future 
 
