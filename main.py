@@ -171,8 +171,8 @@ b = book(page, "Spice and wolf","Books/This is a test of a very long string of.t
 
 m = menu()
 
-m.setOptions({"Read A Book!", "Settings"})
-m.setOptionsCommands({m.readABook(), m.settings()})
+m.setOptions(["Read A Book!", "Settings"])
+m.setOptionsCommands([m.readABook(), m.settings()])
 
 m.mainloop()
 
