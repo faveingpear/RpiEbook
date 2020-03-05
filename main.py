@@ -152,7 +152,7 @@ b = book(page, "Spice and wolf","Books/This is a test of a very long string of.t
 m = menu()
 
 m.setOptions(["Read A Book!", "Settings"])
-m.setOptionsCommands([m.readABook(), m.settings()])
+m.setOptionsCommands([m.readABook, m.settings])
 
 def mainloop():
         key1 = 5
@@ -173,12 +173,16 @@ def mainloop():
 
             if key1state == False:
                 m.executeOption(0)
+                time.sleep(0.2)
             if key2state == False:
                 m.executeOption(1)
+                time.sleep(0.2)
             if key3state == False:
                 m.executeOption(2)
+                time.sleep(0.2)
             if key4state == False:
                 m.executeOption(3)
+                time.sleep(0.2)
 
 mainloop()
 
