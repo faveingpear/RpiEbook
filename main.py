@@ -86,6 +86,16 @@ class book():
     def getTextOfPage(self, page):
         return self.pages[page].getText()
 
+    def changeBook(self, pagesClass, title, pathToBook):
+        self.title = title
+        self.wrapper = textwrap.TextWrapper(width=200)
+
+        file = open(pathToBook)
+
+        self.createPages(pagesClass, file.read())
+
+        file.close()
+
     def createPages(self, pagesClass, text):
 
         newText = self.wrapper.wrap(text=text)
@@ -144,7 +154,11 @@ while True:
             d.clear()
             time.sleep(0.2)
         if key3state == False:
-            d.clear()
+            b.changeBook(page, "Okkami to stuff", "Books/This is spice and wolf.txt")
+            pageNumber = 0
+            d.newScreen()
+            d.addText(b.getTextOfPage(pageNumber), 10, 0)
+            d.drawScreen()
             time.sleep(0.2)
         if key4state == False:
             pageNumber = pageNumber - 1
