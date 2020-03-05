@@ -1,3 +1,7 @@
+# So I made way too much progress today. Right now it's functional, there is not much to it but it does what my goal was to do and I used OOP. 
+# TODO Add status bar, time, page, book, etc. Add settings menu so that stuff like font and font size can be changed. Add a way to save page numbers for all the books. Add a menu to slect between diffrent books to read (Not easy thanks to me using OOP just b.changeBook(etc))
+# It's too late but day 1 was a hell of a lot of fun!
+
 import sys
 import os
 import textwrap
