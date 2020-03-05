@@ -32,7 +32,6 @@ class inkdisplay():
 
     # The do some cool stuffers
     def newScreen(self):
-        self.epd.Clear(0xFF)
         self.himage = Image.new('1', (self.epd.height, self.epd.width), 255)
         self.draw = ImageDraw.Draw(self.himage)
 
@@ -59,7 +58,6 @@ class inkdisplay():
     def __init__(self, newEpd, newFontsDir, newFont):
         self.epd = newEpd
         self.epd.init()
-        self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
         self.wrapper = textwrap.TextWrapper(width=48)
