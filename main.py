@@ -116,6 +116,21 @@ class book():
 
         file.close()
 
+class reading():
+
+    currentpage = 0
+    display = ""
+    b = ""
+
+    def startreading(self, bookClass, title, pathToBook):
+        self.b = book(page, title,pathToBook)
+        self.display.newScreen()
+        self.display.addText(self.b.getTextOfPage(self.currentpage), 10, 0)
+        self.display.drawScreen()
+
+    def __init__(self, epd):
+        self.display = epd
+
 class menu():
 
     options = {
@@ -129,7 +144,8 @@ class menu():
     }
 
     def executeOption(self, number):
-        print(number)
+        if number == 0:
+            r.startreading(book, "Spice and wolf", "Books/This is a test of a very long string of.txt")
 
     def setOptions(self, options):
         self.options = options
@@ -147,7 +163,8 @@ class menu():
         print(self.options)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
-b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
+
+r = reading(d)
 
 m = menu()
 
