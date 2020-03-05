@@ -60,7 +60,7 @@ class inkdisplay():
         self.epd.init()
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
-        self.wrapper = textwrap.TextWrapper(width=44)
+        self.wrapper = textwrap.TextWrapper(width=43)
 
 class page():
 
