@@ -74,12 +74,41 @@ class page():
         self.text = newText
         self.pageNumber = newPageNumber
 
+class book():
+
+    pages = {}
+
+    title = ""
+    numberOfPages = ""
+
+    def getTextOfPage(self, page):
+        return pages[i].getText()
+
+    def createPages(self, pagesClass, text):
+
+        count = ""
+
+        for i in range(len(text)):
+            if count == 50:
+                text[i] = "だ" # Use other thing or future 
+
+        text.split("だ")
+
+        for i in range(text):
+            pages[i] = pagesClass(text[i], i)
+
+    def __init__(self, title):
+
+        self.title = title
+
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+b = book("Spice and wolf")
 
-pages = {}
+b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
+# pages = {}
 
-for i in range(4):
-    pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + str(i), i)
+# for i in range(4):
+#     pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + str(i), i)
 
 pageNumber = 0
 
@@ -102,7 +131,7 @@ while True:
         if key1state == False:
             pageNumber = pageNumber + 1
             d.newScreen()
-            d.addText(pages[pageNumber].getText(), 10, 0)
+            d.addText(b.getTextOfPage[pageNumber].getText(), 10, 0)
             d.drawScreen()
             time.sleep(0.2)
         if key2state == False:
