@@ -166,8 +166,6 @@ class menu():
             if key4state == False:
                 self.optionsCommand[3]()
 
-    def __init__(self):
-
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
 
