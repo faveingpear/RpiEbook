@@ -195,6 +195,7 @@ def mainloop():
 try:
     mainloop()
 except:
+    d.clear()
     d.sleep()
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
