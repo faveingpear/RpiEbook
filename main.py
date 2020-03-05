@@ -146,6 +146,8 @@ class menu():
     def executeOption(self, number):
         if number == 0:
             r.startreading(book, "Spice and wolf", "Books/This is a test of a very long string of.txt")
+        elif number == 3:
+            d.clear()
 
     def setOptions(self, options):
         self.options = options
