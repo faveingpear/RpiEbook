@@ -234,6 +234,7 @@ class menu():
                 self.fileSelectScreenUp()
             elif number == 1:
                 r.startreading("Spice and wolf", self.currentDisplay[1])
+                m.setModeToReading()
             elif number == 2:
                 self.fileSelectScreenDown()
 
