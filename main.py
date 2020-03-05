@@ -128,6 +128,9 @@ class menu():
 
     }
 
+    def executeOption(self, number):
+        print(number)
+
     def setOptions(self, options):
         self.options = options
 
@@ -140,7 +143,18 @@ class menu():
     def readABook(self):
         print("fill")
 
-    def mainloop(self):
+    def printOptions(self):
+        print(self.options)
+
+d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
+
+m = menu()
+
+m.setOptions(["Read A Book!", "Settings"])
+m.setOptionsCommands([m.readABook(), m.settings()])
+
+def mainloop():
         key1 = 5
         key2 = 6
         key3 = 13
@@ -158,23 +172,15 @@ class menu():
             key4state = GPIO.input(key4)
 
             if key1state == False:
-                self.optionsCommand[0]()
+                m.executeOption(0)
             if key2state == False:
-                self.optionsCommand[1]()
+                m.executeOption(1)
             if key3state == False:
-                self.optionsCommand[2]()
+                m.executeOption(2)
             if key4state == False:
-                self.optionsCommand[3]()
+                m.executeOption(3)
 
-d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
-b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
 
-m = menu()
-
-m.setOptions(["Read A Book!", "Settings"])
-m.setOptionsCommands([m.readABook(), m.settings()])
-
-m.mainloop()
 
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
