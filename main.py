@@ -115,6 +115,14 @@ class book():
 class reading():
 
     currentpage = 0
+    currentbook = ""
+
+    def newBook(self, newTitle, newPath):
+        self.currentpage = 0
+        b.changeBook(page, newTitle, newPath)
+        d.newScreen()
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
+        d.drawScreen()
 
     def nextPage(self):
         self.currentpage = self.currentpage + 1
@@ -133,6 +141,32 @@ class reading():
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0)
         d.drawScreen()
+
+class files():
+
+    bookPath = ""
+    fontsPath = ""
+
+    def getListOfBook(self):
+
+        txtfiles = []
+        for file in glob.glob(self.bookPath + "*.txt"):
+            txtfiles.append(file)
+
+        return txtfiles
+    
+    def getListOfFonts(self):
+
+        fontfiles = []
+        for file in glob.glob(self.fontsPath + "/*.ttf"):
+            fontfiles.append(file)
+
+        return fontfiles
+
+    def __init__(self, newBookPath, newFontsPath):
+        self.bookPath = newBookPath
+        self.fontsPath = newFontsPath
+
 
 class menu():
 
@@ -161,6 +195,8 @@ class menu():
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
+f = files("Books/", "Fonts/")
+print(f.getListOfBook())
 b = book()
 r = reading()
 m = menu()
