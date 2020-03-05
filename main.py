@@ -200,6 +200,15 @@ class menu():
 
         m.displayOptions()
 
+    def currentDisplayToString(self):
+
+        newString = ""
+
+        for value in self.currentDisplay:
+            newString = newString + value + "\n"
+
+        return newString
+
     def executeOption(self, number):
         if self.mode == 0:
             self.setModeToFileSelection()
@@ -219,7 +228,7 @@ class menu():
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
-            d.addText(self.currentDisplay, 2,0, False)
+            d.addText(self.currentDisplayToString(), 2,0, False)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
