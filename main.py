@@ -53,7 +53,7 @@ class inkdisplay():
         self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
-        self.wrapper = textwrap.TextWrapper(width=50)
+        self.wrapper = textwrap.TextWrapper(width=45)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
