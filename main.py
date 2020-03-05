@@ -82,7 +82,7 @@ class book():
     numberOfPages = ""
 
     def getTextOfPage(self, page):
-        return self.pages[i].getText()
+        return self.pages[page].getText()
 
     def createPages(self, pagesClass, text):
 
@@ -131,7 +131,7 @@ while True:
         if key1state == False:
             pageNumber = pageNumber + 1
             d.newScreen()
-            d.addText(b.getTextOfPage[pageNumber].getText(), 10, 0)
+            d.addText(b.getTextOfPage(pageNumber).getText(), 10, 0)
             d.drawScreen()
             time.sleep(0.2)
         if key2state == False:
