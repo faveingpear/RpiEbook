@@ -81,6 +81,7 @@ class book():
     title = ""
     numberOfPages = ""
     wrapper = ""
+    filePath = ""
 
     def getTextOfPage(self, page):
         return self.pages[page].getText()
@@ -94,15 +95,21 @@ class book():
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
 
-    def __init__(self, title):
+    def __init__(self, pagesClass, title, pathToBook):
 
         self.title = title
         self.wrapper = textwrap.TextWrapper(width=200)
 
-d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
-b = book("Spice and wolf")
+        file = open(pathToBook)
 
-b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
+        self.createPages(pagesClass, file.read())
+
+        file.close()
+
+d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+b = book(page, "Spice and wolf","Books/This is a test of a very long string of.txt")
+
+#b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
 
 pageNumber = 0
