@@ -103,12 +103,13 @@ d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book("Spice and wolf")
 
 b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
-# pages = {}
 
-# for i in range(4):
-#     pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + str(i), i)
 
 pageNumber = 0
+
+d.newScreen()
+d.addText(b.getTextOfPage(pageNumber), 10, 0)
+d.drawScreen()
 
 key1 = 5
 key2 = 6
@@ -127,10 +128,10 @@ while True:
         key4state = GPIO.input(key4)
 
         if key1state == False:
+            pageNumber = pageNumber + 1
             d.newScreen()
             d.addText(b.getTextOfPage(pageNumber), 10, 0)
             d.drawScreen()
-            pageNumber = pageNumber + 1
             time.sleep(0.2)
         if key2state == False:
             d.clear()
@@ -139,7 +140,10 @@ while True:
             d.clear()
             time.sleep(0.2)
         if key4state == False:
-            d.clear()
+            pageNumber = pageNumber - 1
+            d.newScreen()
+            d.addText(b.getTextOfPage(pageNumber), 10, 0)
+            d.drawScreen()
             time.sleep(0.2)
 
 # epd = epd2in7.EPD()
