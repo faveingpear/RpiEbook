@@ -39,14 +39,14 @@ class inkdisplay():
         self.himage = Image.new('1', (self.epd.height, self.epd.width), 255)
         self.draw = ImageDraw.Draw(self.himage)
 
-    def addText(self, text, x, y):
+    def addText(self, text, x, y, textformat):
+        if textformat == True:
+            newText = ""
 
-        newText = ""
+            newText = self.wrapper.fill(text=text)
 
-        newText = self.wrapper.fill(text=text)
-
-        print(newText)
-
+            print(newText)
+        
         self.draw.text((x, y), newText, font = self.font, fill = 0)
 
     def drawScreen(self):
@@ -121,25 +121,25 @@ class reading():
         self.currentpage = 0
         b.changeBook(page, newTitle, newPath)
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
     def nextPage(self):
         self.currentpage = self.currentpage + 1
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
     def prevPage(self):
         self.currentpage = self.currentpage - 1
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
     def startreading(self, bookClass, title, pathToBook):
         b.changeBook(page, title, pathToBook)
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
 class files():
@@ -191,11 +191,11 @@ class menu():
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
-            d.addText("1) Read A book! 2) Settings!", 2, 0)
+            d.addText("1) Read A book! 2) Settings!", 2, 0, False)
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
-            d.addText(f.getListOfBook(), 2,0)
+            d.addText(f.getListOfBook(), 2,0, False)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
