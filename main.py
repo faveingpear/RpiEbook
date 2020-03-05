@@ -29,6 +29,7 @@ class inkdisplay():
         self.draw = ImageDraw.Draw(self.himage)
 
     def addText(self, text, x, y):
+
         self.draw.text((x, y), text, font = self.font, fill = 0)
 
     def drawScreen(self):
@@ -42,7 +43,7 @@ class inkdisplay():
         self.epd = newEpd
         self.epd.init()
         self.epd.Clear(0xFF)
-        self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 24)
+        self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
