@@ -193,7 +193,7 @@ class menu():
             d.newScreen()
             d.addText("1) Read A book! 2) Settings!", 2, 0)
             d.drawScreen()
-        if self.mode == 2:
+        elif self.mode == 2:
             d.newScreen()
             d.addText(f.getListOfBook(), 2,0)
             d.drawScreen()
