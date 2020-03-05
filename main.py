@@ -219,7 +219,7 @@ class menu():
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
-            d.addText(self.currentDisplay(), 2,0, False)
+            d.addText(self.currentDisplay, 2,0, False)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
