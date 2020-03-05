@@ -180,7 +180,7 @@ def mainloop():
             if key4state == False:
                 m.executeOption(3)
 
-
+mainloop()
 
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
