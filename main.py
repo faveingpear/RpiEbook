@@ -149,6 +149,13 @@ class files():
     bookPath = ""
     fontsPath = ""
 
+    def getStringOfBooks(self):
+        stringOfBooks = ""
+        for filepath in glob.glob(self.bookPath + "*.txt"):
+            stringOfBooks = stringOfBooks + filepath
+
+        return stringOfBooks
+
     def getListOfBook(self):
 
         txtfiles = []
@@ -197,7 +204,7 @@ class menu():
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
-            d.addText(f.getListOfBook(), 2,0, False)
+            d.addText(f.getStringOfBooks(), 2,0, False)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
