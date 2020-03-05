@@ -47,7 +47,9 @@ class inkdisplay():
 
             print(newText)
         
-        self.draw.text((x, y), newText, font = self.font, fill = 0)
+            self.draw.text((x, y), newText, font = self.font, fill = 0)
+        else:
+            self.draw.text((x, y), text, font = self.font, fill = 0)
 
     def drawScreen(self):
         self.epd.display(self.epd.getbuffer(self.himage))
