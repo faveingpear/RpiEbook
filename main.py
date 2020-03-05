@@ -128,7 +128,7 @@ d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
 b = book()
 
-r = reading(d)
+r = reading()
 
 m = menu()
 
