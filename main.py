@@ -138,7 +138,7 @@ class reading():
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
-    def startreading(self, bookClass, title, pathToBook):
+    def startreading(self, title, pathToBook):
         b.changeBook(page, title, pathToBook)
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
@@ -200,6 +200,12 @@ class menu():
 
         m.displayOptions()
 
+    def fileSelectScreenUp(self):
+        print("up")
+
+    def fileSelectScreenDown(self):
+        print("down")
+
     def currentDisplayToString(self):
 
         newString = ""
@@ -220,7 +226,14 @@ class menu():
             elif number == 3:
                 d.clear()
                 d.sleep()
-
+        elif self.mode == 2:
+            if number == 0:
+                self.fileSelectScreenUp()
+            elif number == 1:
+                r.startreading("Spice and wolf", self.currentDisplay[1])
+            elif number == 2:
+                self.fileSelectScreenDown()
+                
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
