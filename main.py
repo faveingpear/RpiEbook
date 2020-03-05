@@ -128,7 +128,7 @@ while True:
 
         if key1state == False:
             d.newScreen()
-            d.addText(b.getTextOfPage(pageNumber).getText(), 10, 0)
+            d.addText(b.getTextOfPage(pageNumber), 10, 0)
             d.drawScreen()
             pageNumber = pageNumber + 1
             time.sleep(0.2)
