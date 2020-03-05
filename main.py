@@ -49,6 +49,9 @@ class inkdisplay():
     def drawScreen(self):
         self.epd.display(self.epd.getbuffer(self.himage))
 
+    def sleep(self):
+        self.epd.sleep()
+
     def clear(self):
         self.epd.Clear(0xFF)
 
@@ -146,7 +149,7 @@ class menu():
                 r.prevPage()
             elif number == 3:
                 d.clear()
-                epd.sleep()
+                d.sleep()
 
     def displayOptions(self):
         if self.mode == 0:
@@ -189,9 +192,10 @@ def mainloop():
             if key4state == False:
                 m.executeOption(3)
                 time.sleep(0.2)
-
-mainloop()
-
+try:
+    mainloop()
+except:
+    d.sleep()
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
 
