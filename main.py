@@ -82,7 +82,7 @@ class book():
     numberOfPages = ""
 
     def getTextOfPage(self, page):
-        return pages[i].getText()
+        return self.pages[i].getText()
 
     def createPages(self, pagesClass, text):
 
@@ -92,10 +92,10 @@ class book():
             if count == 50:
                 text[i] = "だ" # Use other thing or future 
 
-        text.split("だ")
+        textList = text.split("だ")
 
-        for i in range(text):
-            pages[i] = pagesClass(text[i], i)
+        for i in range(len(textList)):
+            self.pages[i] = pagesClass(text[i], i)
 
     def __init__(self, title):
 
