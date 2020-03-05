@@ -97,7 +97,7 @@ class book():
     def __init__(self, title):
 
         self.title = title
-        self.wrapper = textwrap.TextWrapper(width=500)
+        self.wrapper = textwrap.TextWrapper(width=200)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book("Spice and wolf")
@@ -127,10 +127,10 @@ while True:
         key4state = GPIO.input(key4)
 
         if key1state == False:
-            pageNumber = pageNumber + 1
             d.newScreen()
             d.addText(b.getTextOfPage(pageNumber).getText(), 10, 0)
             d.drawScreen()
+            pageNumber = pageNumber + 1
             time.sleep(0.2)
         if key2state == False:
             d.clear()
