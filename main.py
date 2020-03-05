@@ -60,7 +60,7 @@ class inkdisplay():
         self.epd.init()
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
-        self.wrapper = textwrap.TextWrapper(width=48)
+        self.wrapper = textwrap.TextWrapper(width=46)
 
 class page():
 
@@ -90,7 +90,7 @@ class book():
 
     def changeBook(self, pagesClass, title, pathToBook):
         self.title = title
-        self.wrapper = textwrap.TextWrapper(width=200)
+        self.wrapper = textwrap.TextWrapper(width=400)
 
         file = open(pathToBook)
 
