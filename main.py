@@ -86,7 +86,7 @@ class book():
 
     def createPages(self, pagesClass, text):
 
-        count = ""
+        count = 0
 
         for i in range(len(text)):
             count = count + 1
