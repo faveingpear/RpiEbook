@@ -173,8 +173,8 @@ class menu():
     mode = 0
 
     def setModeToFileSelection(self):
-        self.mode = 1
-        r.startreading(book, "Foxy Keith.txt", "Books/Foxy Keith.txt")
+        self.mode = 2
+        m.displayOptions()
 
     def executeOption(self, number):
         if self.mode == 0:
@@ -193,10 +193,13 @@ class menu():
             d.newScreen()
             d.addText("1) Read A book! 2) Settings!", 2, 0)
             d.drawScreen()
+        if self.mode == 2:
+            d.newScreen()
+            d.addText(f.getListOfBook(), 2,0)
+            d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
 f = files("Books/", "Fonts/")
-print(f.getListOfBook())
 b = book()
 r = reading()
 m = menu()
