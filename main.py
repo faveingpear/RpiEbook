@@ -12,7 +12,7 @@ epd.Clear(0xFF)
 
 fontsdir = os.path.join('fonts')
 
-font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttc'), 24)
+font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttf'), 24)
 
 Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
 draw = ImageDraw.Draw(Himage)
