@@ -147,6 +147,7 @@ class reading():
         return self.currentpage
 
     def startreading(self, title, pathToBook):
+        self.currentpage = 0
         b.changeBook(page, title, pathToBook)
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
@@ -158,10 +159,10 @@ class files():
     fontsPath = ""
 
     def saveCurrentPage(self, currentpage, pathToBook):
-        print("Saveing" + pathToBook + ".page " + currentpage)
+        print("Saveing" + pathToBook + ".page " + str(currentpage))
         file = open(pathToBook+".page", "w")
 
-        file.write(currentpage)
+        file.write(str(currentpage))
 
         file.close()
 
