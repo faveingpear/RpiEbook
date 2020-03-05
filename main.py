@@ -99,7 +99,7 @@ while True:
         key4state = GPIO.input(key4)
 
         if key1state == False:
-            page = page + 1
+            pageNumber = pageNumber + 1
             d.clear()
             d.newScreen()
             d.addText(pages[pageNumber].getText(), 10, 0)
