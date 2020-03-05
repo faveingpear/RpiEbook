@@ -90,7 +90,7 @@ class book():
 
     def changeBook(self, pagesClass, title, pathToBook):
         self.title = title
-        self.wrapper = textwrap.TextWrapper(width=450)
+        self.wrapper = textwrap.TextWrapper(width=455)
 
         file = open(pathToBook)
 
@@ -107,6 +107,7 @@ class book():
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
 
+
 class reading():
 
     currentpage = 0
@@ -114,19 +115,19 @@ class reading():
     def nextPage(self):
         self.currentpage = self.currentpage + 1
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
         d.drawScreen()
 
     def prevPage(self):
         self.currentpage = self.currentpage - 1
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
         d.drawScreen()
 
     def startreading(self, bookClass, title, pathToBook):
         b.changeBook(page, title, pathToBook)
         d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.addText(b.getTextOfPage(self.currentpage), 2, 0)
         d.drawScreen()
 
 class menu():
@@ -152,7 +153,7 @@ class menu():
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
-            d.addText("1) Read A book! 2) Settings!", 10, 0)
+            d.addText("1) Read A book! 2) Settings!", 2, 0)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
