@@ -253,7 +253,7 @@ class menu():
             elif number == 2:
                 r.nextPage()
             elif number == 3:
-                f.saveCurrentPage(r.getCurrentPage(),book.getFilePath())
+                f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
                 d.clear()
                 d.sleep()
         elif self.mode == 2:
