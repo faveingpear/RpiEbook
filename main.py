@@ -32,7 +32,7 @@ class inkdisplay():
 
         counter = 0
 
-        for i in range(text):
+        for i in range(len(text)):
             counter = counter + 1
 
             if counter == 20:
