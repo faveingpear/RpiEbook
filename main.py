@@ -233,6 +233,8 @@ class menu():
             if number == 0:
                 r.nextPage()
             elif number == 1:
+                m.setModeToFileSelection()
+            elif number == 2:
                 r.prevPage()
             elif number == 3:
                 d.clear()
