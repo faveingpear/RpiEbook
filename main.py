@@ -10,7 +10,7 @@ epd = epd2in7.EPD()
 epd.init()
 epd.Clear(0xFF)
 
-fontsdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'fonts')
+fontsdir = os.path.join('fonts')
 
 font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttc'), 24)
 
