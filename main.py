@@ -146,6 +146,7 @@ class menu():
                 r.prevPage()
             elif number == 3:
                 d.clear()
+                epd.sleep()
 
     def displayOptions(self):
         if self.mode == 0:
