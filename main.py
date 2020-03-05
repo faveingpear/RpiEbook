@@ -1,5 +1,6 @@
 import sys
 import os
+import textwrap
 
 from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
@@ -12,6 +13,7 @@ class inkdisplay():
     epd = ""
     himage = ""
     draw = ""
+    wrapper = ""
 
     # Ya set bois
     def setFont(self,newFont):
@@ -30,18 +32,13 @@ class inkdisplay():
 
     def addText(self, text, x, y):
 
-        counter = 0
+        newText = ""
 
-        for i in range(len(text)):
-            counter = counter + 1
+        newText = self.wrapper.fill(text=text)
 
-            if counter == 20:
-                text[i] = "\n"
-                counter = 0
+        print(newText)
 
-        print(text)
-
-        self.draw.text((x, y), text, font = self.font, fill = 0)
+        self.draw.text((x, y), newText, font = self.font, fill = 0)
 
     def drawScreen(self):
         self.epd.display(self.epd.getbuffer(self.himage))
@@ -55,6 +52,8 @@ class inkdisplay():
         self.epd.init()
         self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
+
+        self.wrapper = textwrap.TextWrapper(width=50)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
