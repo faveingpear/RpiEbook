@@ -91,12 +91,17 @@ class book():
     wrapper = ""
     filePath = ""
 
+    def getFilePath(self):
+        return self.filePath
+
     def getTextOfPage(self, page):
         return self.pages[page].getText()
 
     def changeBook(self, pagesClass, title, pathToBook):
         self.title = title
         self.wrapper = textwrap.TextWrapper(width=455)
+
+        self.filePath = pathToBook
 
         file = open(pathToBook)
 
@@ -138,6 +143,9 @@ class reading():
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         d.drawScreen()
 
+    def getCurrentPage(self):
+        return self.currentpage
+
     def startreading(self, title, pathToBook):
         b.changeBook(page, title, pathToBook)
         d.newScreen()
@@ -148,6 +156,13 @@ class files():
 
     bookPath = ""
     fontsPath = ""
+
+    def saveCurrentPage(self, currentpage, pathToBook):
+        file = open(pathToBook+".page", "w")
+
+        file.write(currentpage)
+
+        file.close()
 
     def getStringOfBooks(self):
         stringOfBooks = ""
@@ -231,12 +246,13 @@ class menu():
             self.setModeToFileSelection()
         elif self.mode == 1:
             if number == 0:
-                r.nextPage()
+                r.prevPage(0)
             elif number == 1:
                 m.setModeToFileSelection()
             elif number == 2:
-                r.prevPage()
+                r.nextPage()
             elif number == 3:
+                f.saveCurrentPage(r.getCurrentPage(),book.getFilePath())
                 d.clear()
                 d.sleep()
         elif self.mode == 2:
@@ -247,6 +263,9 @@ class menu():
                 m.setModeToReading()
             elif number == 2:
                 self.fileSelectScreenDown()
+            elif number == 3:
+                d.clear()
+                d.sleep()
 
     def displayOptions(self):
         if self.mode == 0:
