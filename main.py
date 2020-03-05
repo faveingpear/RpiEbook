@@ -109,6 +109,18 @@ class reading():
 
     currentpage = 0
 
+    def nextPage(self):
+        self.currentpage = self.currentpage + 1
+        d.newScreen()
+        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.drawScreen()
+
+    def prevPage(self):
+        self.currentpage = self.currentpage - 1
+        d.newScreen()
+        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.drawScreen()
+
     def startreading(self, bookClass, title, pathToBook):
         b.changeBook(page, title, pathToBook)
         d.newScreen()
@@ -117,21 +129,28 @@ class reading():
 
 class menu():
 
+    mode = 0
+
+    def setModeToFileSelection(self):
+        self.mode = 1
+        r.startreading(book, "Spice and wolf", "Books/This is a test of a very long string of.txt")
+
     def executeOption(self, number):
-        if number == 0:
-            r.startreading(book, "Spice and wolf", "Books/This is a test of a very long string of.txt")
-        elif number == 3:
-            d.clear()
+        if self.mode == 0:
+            self.setModeToFileSelection()
+        elif self.mode == 1:
+            if number == 0:
+                r.nextPage()
+            elif number == 1:
+                r.prevPage()
+            elif number == 3:
+                d.clear()
 
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
-
 b = book()
-
 r = reading()
-
 m = menu()
-
 
 def mainloop():
         key1 = 5
