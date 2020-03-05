@@ -187,6 +187,8 @@ m = menu(keys)
 m.setOptions({"Read A Book!", "Settings"})
 m.setOptionsCommands({m.readABook(), m.settings()})
 
+m.mainloop()
+
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
 
