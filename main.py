@@ -5,20 +5,60 @@ from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
 import time
 
-epd = epd2in7.EPD()
+class inkdisplay():
 
-epd.init()
-epd.Clear(0xFF)
+    fontsdir = ""
+    font = "Ubuntu-R.ttf"
+    epd = ""
+    himage = ""
+    draw = ""
 
-fontsdir = os.path.join('fonts')
+    def setFont(self,newFont):
+        self.font = newFont
 
-font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttf'), 24)
+    def setEpd(self, newEpd): #No reason to ever run this but it's here I guess 大丈夫
+        self.epd = newEpd        
 
-Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
-draw = ImageDraw.Draw(Himage)
+    def setFontsDir(self, newFontDir):
+        self.fontsdir = newFontDir
 
-draw.text((10, 0), 'hello world', font = font24, fill = 0)
+    def newImage(self):
+        self.himage = Image.new('1', (self.epd.height, self.epd.width), 255)
+        self.draw = ImageDraw.Draw(self.himage)
 
-epd.display(epd.getbuffer(Himage))
+    def addText(self, text):
+        self.draw.text((10, 0), text, font = self.font, fill = 0)
 
-epd.Clear(0xFF)
+    def drawScreen(self):
+        self.epd.display(self.epd.getbuffer(self.himage))
+
+    def clear(self):
+        self.epd.Clear(0xFF)
+
+    def __init__(self, newEpd, newFontsDir, newFont):
+        self.epd = newEpd
+        self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 24)
+
+d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+
+d.newImage()
+d.addText("Testing")
+d.drawScreen()
+d.clear()
+# epd = epd2in7.EPD()
+
+# epd.init()
+# epd.Clear(0xFF)
+
+# fontsdir = os.path.join('fonts')
+
+# font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttf'), 24)
+
+# Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
+# draw = ImageDraw.Draw(Himage)
+
+# draw.text((10, 0), 'hello worlddsdsdsaaaaaaaaaaaaaaaaaaaaaaaaaaaadsadsadadsadsadasdasdas', font = font24, fill = 0)
+
+# epd.display(epd.getbuffer(Himage))
+
+# epd.Clear(0xFF)
