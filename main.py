@@ -158,6 +158,7 @@ class files():
     fontsPath = ""
 
     def saveCurrentPage(self, currentpage, pathToBook):
+        print("Saveing" + pathToBook + ".page " + currentpage)
         file = open(pathToBook+".page", "w")
 
         file.write(currentpage)
@@ -246,7 +247,7 @@ class menu():
             self.setModeToFileSelection()
         elif self.mode == 1:
             if number == 0:
-                r.prevPage(0)
+                r.prevPage()
             elif number == 1:
                 m.setModeToFileSelection()
             elif number == 2:
