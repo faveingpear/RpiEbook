@@ -37,6 +37,8 @@ class inkdisplay():
 
     def __init__(self, newEpd, newFontsDir, newFont):
         self.epd = newEpd
+        self.epd.init()
+        self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 24)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
@@ -45,6 +47,7 @@ d.newImage()
 d.addText("Testing")
 d.drawScreen()
 d.clear()
+
 # epd = epd2in7.EPD()
 
 # epd.init()
