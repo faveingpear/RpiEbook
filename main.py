@@ -172,7 +172,7 @@ class menu():
         print("fill")
 
     def mainloop(self):
-        responce = self.buttons.startLoop()
+        responce = self.buttons.startLoop(self)
 
         self.optionsCommand[responce]()
 
