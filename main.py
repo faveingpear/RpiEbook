@@ -152,7 +152,7 @@ class files():
     def getStringOfBooks(self):
         stringOfBooks = ""
         for filepath in glob.glob(self.bookPath + "*.txt"):
-            stringOfBooks = stringOfBooks + filepath
+            stringOfBooks = stringOfBooks + filepath + "\n"
 
         return stringOfBooks
 
