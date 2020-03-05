@@ -200,6 +200,9 @@ class menu():
 
         m.displayOptions()
 
+    def setModeToReading(self):
+        self.mode = 1
+
     def fileSelectScreenUp(self):
         print("up")
 
@@ -233,7 +236,7 @@ class menu():
                 r.startreading("Spice and wolf", self.currentDisplay[1])
             elif number == 2:
                 self.fileSelectScreenDown()
-                
+
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
