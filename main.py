@@ -181,8 +181,23 @@ class menu():
 
     mode = 0
 
+    fileSelectOptions = {}
+    currentDisplay = {}
+    currentPage = 0
+
     def setModeToFileSelection(self):
         self.mode = 2
+    
+        self.fileSelectOptions = f.getListOfBook()
+
+        self.currentDisplay[0] = "UP"
+        
+        self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
+
+        self.currentDisplay[2] = "DOWN"
+
+        self.displayOptions()
+
         m.displayOptions()
 
     def executeOption(self, number):
@@ -204,7 +219,7 @@ class menu():
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
-            d.addText(f.getStringOfBooks(), 2,0, False)
+            d.addText(self.currentDisplay(), 2,0, False)
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
