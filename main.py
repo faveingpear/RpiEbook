@@ -78,7 +78,7 @@ d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 pages = {}
 
 for i in range(2):
-    pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + i, i)
+    pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + str(i), i)
 
 pageNumber = 0
 
