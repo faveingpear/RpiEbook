@@ -80,27 +80,24 @@ class book():
 
     title = ""
     numberOfPages = ""
+    wrapper = ""
 
     def getTextOfPage(self, page):
         return self.pages[page].getText()
 
     def createPages(self, pagesClass, text):
 
-        count = 0
+        newText = self.wrapper.wrap(text=text)
 
-        for i in range(len(text)):
-            count = count + 1
-            if count == 50:
-                text[i] = "だ" # Use other thing or future 
+        print(newText)
 
-        textList = text.split("だ")
-
-        for i in range(len(textList)):
-            self.pages[i] = pagesClass(text[i], i)
+        for i in range(len(newText)):
+            self.pages[i] = pagesClass(newText[i], i)
 
     def __init__(self, title):
 
         self.title = title
+        self.wrapper = textwrap.TextWrapper(width=500)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 b = book("Spice and wolf")
