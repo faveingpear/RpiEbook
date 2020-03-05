@@ -1,8 +1,6 @@
 import sys
 
-sys.path.insert(1, 'e-Paper/RaspberryPi&JetsonNano/python')
-
-from e-Paper.RaspberryPi&JetsonNano.python.waveshare_epd import epd2in7
+from lib.waveshare_epd import epd2in7
 import time
 
 try:
