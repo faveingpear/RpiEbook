@@ -105,43 +105,17 @@ class book():
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
 
-    def __init__(self, pagesClass, title, pathToBook):
-
-        self.title = title
-        self.wrapper = textwrap.TextWrapper(width=200)
-
-        file = open(pathToBook)
-
-        self.createPages(pagesClass, file.read())
-
-        file.close()
-
 class reading():
 
     currentpage = 0
-    display = ""
-    b = ""
 
     def startreading(self, bookClass, title, pathToBook):
-        self.b = book(page, title,pathToBook)
-        self.display.newScreen()
-        self.display.addText(self.b.getTextOfPage(self.currentpage), 10, 0)
-        self.display.drawScreen()
-
-    def __init__(self, epd):
-        self.display = epd
+        b.changeBook(page, title, pathToBook)
+        d.newScreen()
+        d.addText(b.getTextOfPage(self.currentpage), 10, 0)
+        d.drawScreen()
 
 class menu():
-
-    options = {
-    
-    }
-    optionsCommand = {
-
-    }
-    currentDiplay = {
-
-    }
 
     def executeOption(self, number):
         if number == 0:
@@ -149,29 +123,15 @@ class menu():
         elif number == 3:
             d.clear()
 
-    def setOptions(self, options):
-        self.options = options
-
-    def setOptionsCommands(self, optionsCommand):
-        self.optionsCommand = optionsCommand
-
-    def settings(self):
-        print("fill")
-
-    def readABook(self):
-        print("fill")
-
-    def printOptions(self):
-        print(self.options)
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
+
+b = book()
 
 r = reading(d)
 
 m = menu()
 
-m.setOptions(["Read A Book!", "Settings"])
-m.setOptionsCommands([m.readABook, m.settings])
 
 def mainloop():
         key1 = 5
