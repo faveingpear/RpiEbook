@@ -204,8 +204,8 @@ class menu():
 
         newString = ""
 
-        for value in self.currentDisplay:
-            newString = newString + value + "\n"
+        for i in range(len(self.currentDisplay)):
+            newString = newString + str(i) + ":" + self.currentDisplay[i] + "\n"
 
         return newString
 
