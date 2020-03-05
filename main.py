@@ -31,6 +31,7 @@ class inkdisplay():
 
     # The do some cool stuffers
     def newScreen(self):
+        self.epd.Clear(0xFF)
         self.himage = Image.new('1', (self.epd.height, self.epd.width), 255)
         self.draw = ImageDraw.Draw(self.himage)
 
@@ -57,7 +58,7 @@ class inkdisplay():
         self.epd.Clear(0xFF)
         self.font = ImageFont.truetype(os.path.join(newFontsDir, newFont), 12)
 
-        self.wrapper = textwrap.TextWrapper(width=45)
+        self.wrapper = textwrap.TextWrapper(width=47)
 
 class page():
 
@@ -77,7 +78,7 @@ d = inkdisplay(epd2in7.EPD(), "fonts", "Ubuntu-R.ttf")
 
 pages = {}
 
-for i in range(2):
+for i in range(4):
     pages[i] = page("This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line." + str(i), i)
 
 pageNumber = 0
@@ -100,7 +101,6 @@ while True:
 
         if key1state == False:
             pageNumber = pageNumber + 1
-            d.clear()
             d.newScreen()
             d.addText(pages[pageNumber].getText(), 10, 0)
             d.drawScreen()
