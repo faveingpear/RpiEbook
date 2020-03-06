@@ -13,7 +13,7 @@
 # TODO Working on maybe removie some class ex: reading Im not sure if it is really needed most of what It does can just be put into book
 # TODO General Optimization
 # TODO Maybe research if exception based GPIO is a thing so I don't need a mainloop to check for the GPIO every 0.5s 
-# TODO 
+# TODO Design!!
 
 import sys
 import os
@@ -64,6 +64,9 @@ class inkdisplay():
             self.draw.text((x, y), newText, font = self.font, fill = 0)
         else:
             self.draw.text((x, y), text, font = self.font, fill = 0)
+
+    def addRectangle(self, x, y, widht, height):
+        self.draw.rectangle((x,y,widht,height), outline=self.epd.GRAY1)
 
     def drawScreen(self):
         self.epd.display(self.epd.getbuffer(self.himage))
@@ -179,58 +182,6 @@ class book():
 
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
-
-# class reading():
-
-#     currentpage = 0
-
-#     def newBook(self, newTitle, newPath):
-#         self.currentpage = 0
-#         b.changeBook(page, newTitle, newPath)
-#         d.newScreen()
-#         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-#         d.drawScreen()
-
-#     def nextPage(self):
-#         try:
-#             self.currentpage = self.currentpage + 1
-#             f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
-#             d.newScreen()
-#             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-#             s.updateClock()
-#             s.updatePage(self.currentpage)
-#             s.addStatusBar()
-#             d.drawScreen()
-#         except:
-#             self.currentPage = self.currentPage - 1
-#             print("Can't go foward!")
-
-#     def prevPage(self):
-#         try:
-#             self.currentpage = self.currentpage - 1
-#             f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
-#             d.newScreen()
-#             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-#             s.updateClock()
-#             s.updatePage(self.currentpage)
-#             s.addStatusBar()
-#             d.drawScreen()
-#         except:
-#             self.currentPage = self.currentPage + 1
-#             print("Can't go back!")
-
-#     def getCurrentPage(self):
-#         return self.currentpage
-
-#     def startreading(self, title, pathToBook):
-#         self.currentpage = f.loadCurrentPage(pathToBook)
-#         b.changeBook(page, title, pathToBook)
-#         d.newScreen()
-#         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-#         s.updateClock()
-#         s.updatePage(self.currentpage)
-#         s.addStatusBar()
-#         d.drawScreen()
 
 class statusbar():
 
@@ -390,7 +341,8 @@ class menu():
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
-            d.addText("1) Read A book! 2) Settings!", 2, 0, False)
+            d.addText("1) Read A book!\n 2) Settings", 2, 0, False)
+            d.addText("Created by Matthew Pearson, Version 0.1", 165, 2, False)
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
