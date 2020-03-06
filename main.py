@@ -176,7 +176,7 @@ class statusbar():
         statusString = ""
 
         for i in range(len(self.elements)):
-            statusString = self.elements[i] + " "
+            statusString = str(self.elements[i]) + " "
 
         d.addText(statusString, 2, 100, False)
 
