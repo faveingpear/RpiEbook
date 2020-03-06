@@ -135,12 +135,18 @@ class reading():
         self.currentpage = self.currentpage + 1
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+        s.updateClock()
+        s.updatePage()
+        s.addStatusBar()
         d.drawScreen()
 
     def prevPage(self):
         self.currentpage = self.currentpage - 1
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+        s.updateClock()
+        s.updatePage()
+        s.addStatusBar()
         d.drawScreen()
 
     def getCurrentPage(self):
@@ -151,7 +157,28 @@ class reading():
         b.changeBook(page, title, pathToBook)
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+        s.updateClock()
+        s.updatePage()
+        s.addStatusBar()
         d.drawScreen()
+
+class statusbar():
+
+    elements = {}
+
+    def updateClock(self):
+        self.elements[0] = time.asctime( time.localtime(time.time()) )
+    
+    def updatePage(self, newPage):
+        self.elements[1] = newPage
+
+    def addStatusBar(self):
+        statusString = ""
+
+        for i in range(len(self.elements)):
+            statusString = self.elements[i] + " "
+
+        d.addText(statusString, 2, 100, False)
 
 class files():
 
@@ -297,6 +324,7 @@ d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
 f = files("Books/", "Fonts/")
 b = book()
 r = reading()
+s = statusbar()
 m = menu()
 m.displayOptions()
 
