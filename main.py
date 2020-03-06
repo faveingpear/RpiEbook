@@ -200,7 +200,7 @@ class files():
         page = 0
         
         try:
-            file = open(pathToBook + ".page", "r")
+            file = open("/home/pi/RpiEbook/" + pathToBook + ".page", "r")
             page = int(file.read())
             file.close()
 
@@ -211,7 +211,7 @@ class files():
 
     def saveCurrentPage(self, currentpage, pathToBook):
         print("Saveing" + pathToBook + ".page " + str(currentpage))
-        file = open(pathToBook+".page", "w")
+        file = open("/home/pi/RpiEbook/" + pathToBook+".page", "w")
 
         file.write(str(currentpage))
 
@@ -339,7 +339,7 @@ class menu():
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
-f = files("Books/", "Fonts/")
+f = files("/home/pi/RpiEbook/Books/", "/home/pi/RpiEbook/Fonts/")
 b = book()
 r = reading()
 s = statusbar()
