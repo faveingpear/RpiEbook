@@ -115,8 +115,6 @@ class book():
 
         newText = self.wrapper.wrap(text=text)
 
-        print(newText)
-
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
 
@@ -200,7 +198,7 @@ class files():
         page = 0
         
         try:
-            file = open("/home/pi/RpiEbook/" + pathToBook + ".page", "r")
+            file = open(pathToBook + ".page", "r")
             page = int(file.read())
             file.close()
 
@@ -211,7 +209,7 @@ class files():
 
     def saveCurrentPage(self, currentpage, pathToBook):
         print("Saveing" + pathToBook + ".page " + str(currentpage))
-        file = open("/home/pi/RpiEbook/" + pathToBook+".page", "w")
+        file = open(pathToBook+".page", "w")
 
         file.write(str(currentpage))
 
@@ -339,7 +337,7 @@ class menu():
             d.drawScreen()
 
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
-f = files("/home/pi/RpiEbook/Books/", "/home/pi/RpiEbook/Fonts/")
+f = files("Books/", "Fonts/")
 b = book()
 r = reading()
 s = statusbar()
