@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # So I made way too much progress today. Right now it's functional, there is not much to it but it does what my goal was to do and I used OOP. 
 # TODO Add status bar, time, page, book, etc. Add settings menu so that stuff like font and font size can be changed. Add a way to save page numbers for all the books. Add a menu to slect between diffrent books to read (Not easy thanks to me using OOP just b.changeBook(etc))
 # It's too late but day 1 was a hell of a lot of fun!
@@ -132,22 +134,30 @@ class reading():
         d.drawScreen()
 
     def nextPage(self):
-        self.currentpage = self.currentpage + 1
-        d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-        s.updateClock()
-        s.updatePage(self.currentpage)
-        s.addStatusBar()
-        d.drawScreen()
+        try:
+            self.currentpage = self.currentpage + 1
+            d.newScreen()
+            d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+            s.updateClock()
+            s.updatePage(self.currentpage)
+            s.addStatusBar()
+            d.drawScreen()
+        except:
+            self.currentPage = self.currentPage - 1
+            print("Can't go foward!")
 
     def prevPage(self):
-        self.currentpage = self.currentpage - 1
-        d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-        s.updateClock()
-        s.updatePage(self.currentpage)
-        s.addStatusBar()
-        d.drawScreen()
+        try:
+            self.currentpage = self.currentpage - 1
+            d.newScreen()
+            d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+            s.updateClock()
+            s.updatePage(self.currentpage)
+            s.addStatusBar()
+            d.drawScreen()
+        except:
+            self.currentPage = self.currentPage + 1
+            print("Can't go back!")
 
     def getCurrentPage(self):
         return self.currentpage
@@ -262,18 +272,26 @@ class menu():
         self.mode = 1
 
     def fileSelectScreenUp(self):
-        self.currentPage = self.currentPage + 1
+        try:
+            self.currentPage = self.currentPage + 1
 
-        self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
+            self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
 
-        m.displayOptions()
+            m.displayOptions()
+        except:
+            self.currentPage = self.currentPage - 1
+            print("Can't go down")
 
     def fileSelectScreenDown(self):
-        self.currentPage = self.currentPage - 1
+        try:
+            self.currentPage = self.currentPage - 1
 
-        self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
+            self.currentDisplay[1] = self.fileSelectOptions[self.currentPage]
 
-        m.displayOptions()
+            m.displayOptions()
+        except:
+            self.currentPage = self.currentPage + 1
+            print("Can't go foward")
 
     def currentDisplayToString(self):
 
@@ -298,6 +316,7 @@ class menu():
                 f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
                 d.clear()
                 d.sleep()
+                os.system("sudo shutdown -h now")
         elif self.mode == 2:
             if number == 0:
                 self.fileSelectScreenUp()
@@ -309,6 +328,7 @@ class menu():
             elif number == 3:
                 d.clear()
                 d.sleep()
+                os.system("sudo shutdown -h now")
 
     def displayOptions(self):
         if self.mode == 0:
@@ -357,11 +377,12 @@ def mainloop():
             if key4state == False:
                 m.executeOption(3)
                 time.sleep(0.2)
-# try:
-mainloop()
-# except:
-#     d.clear()
-#     d.sleep()
+try:
+    mainloop()
+except:
+    d.clear()
+    d.sleep()
+    os.system("sudo shutdown -h now") 
 #b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
 
 
