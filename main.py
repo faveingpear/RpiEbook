@@ -10,7 +10,6 @@
 # TODO Figure out how the licences work with the waveshare_epd driver
 # TODO Use public domain fonts because Im not sure if I am really allowed to use Ubuntu Fonts 
 # TODO LOGGING
-# TODO Working on maybe removie some class ex: reading Im not sure if it is really needed most of what It does can just be put into book
 # TODO General Optimization
 # TODO Maybe research if exception based GPIO is a thing so I don't need a mainloop to check for the GPIO every 0.5s 
 # TODO Design!!
@@ -341,8 +340,8 @@ class menu():
     def displayOptions(self):
         if self.mode == 0:
             d.newScreen()
-            d.addText("1) Read A book!\n 2) Settings", 2, 0, False)
-            d.addText("Created by Matthew Pearson, Version 0.1", 165, 2, False)
+            d.addText("1) Read A book!\n2) Settings", 2, 0, False)
+            d.addText("Created by Matthew Pearson, Version 0.1", 2, 165, False)
             d.drawScreen()
         elif self.mode == 2:
             d.newScreen()
