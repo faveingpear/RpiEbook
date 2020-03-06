@@ -17,6 +17,8 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
+os.chdir("/home/pi/RpiBook/")
+
 class inkdisplay():
 
     fontsdir = ""
