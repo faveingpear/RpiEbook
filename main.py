@@ -305,7 +305,7 @@ class menu():
         newString = ""
 
         for i in range(len(self.currentDisplay)):
-            newString = newString + str(i) + ":" + self.currentDisplay[i] + "\n"
+            newString = newString + str(i+1) + ") " + self.currentDisplay[i] + "\n"
 
         return newString
 
