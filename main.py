@@ -136,7 +136,7 @@ class reading():
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         s.updateClock()
-        s.updatePage()
+        s.updatePage(self.currentpage)
         s.addStatusBar()
         d.drawScreen()
 
@@ -145,7 +145,7 @@ class reading():
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         s.updateClock()
-        s.updatePage()
+        s.updatePage(self.currentpage)
         s.addStatusBar()
         d.drawScreen()
 
@@ -158,7 +158,7 @@ class reading():
         d.newScreen()
         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
         s.updateClock()
-        s.updatePage()
+        s.updatePage(self.currentpage)
         s.addStatusBar()
         d.drawScreen()
 
