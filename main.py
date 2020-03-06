@@ -17,7 +17,7 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-os.chdir("/home/pi/RpiBook/")
+os.chdir("/home/pi/RpiEbook/")
 
 class inkdisplay():
 
