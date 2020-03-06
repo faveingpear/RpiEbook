@@ -46,8 +46,6 @@ class inkdisplay():
             newText = ""
 
             newText = self.wrapper.fill(text=text)
-
-            print(newText)
         
             self.draw.text((x, y), newText, font = self.font, fill = 0)
         else:
@@ -265,8 +263,6 @@ class menu():
         self.currentDisplay[2] = "DOWN"
 
         self.displayOptions()
-
-        m.displayOptions()
 
     def setModeToReading(self):
         self.mode = 1
