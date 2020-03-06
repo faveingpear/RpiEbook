@@ -134,6 +134,7 @@ class reading():
     def nextPage(self):
         try:
             self.currentpage = self.currentpage + 1
+            f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
             d.newScreen()
             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
             s.updateClock()
@@ -147,6 +148,7 @@ class reading():
     def prevPage(self):
         try:
             self.currentpage = self.currentpage - 1
+            f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
             d.newScreen()
             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
             s.updateClock()
@@ -381,68 +383,3 @@ except:
     d.clear()
     d.sleep()
     os.system("sudo shutdown -h now") 
-#b.createPages(page, "This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line. This is a test of a very long string of text to see if the display will loop the text or just clip the end of this line.")
-
-
-# pageNumber = 0
-
-# d.newScreen()
-# d.addText(b.getTextOfPage(pageNumber), 10, 0)
-# d.drawScreen()
-
-# key1 = 5
-# key2 = 6
-# key3 = 13
-# key4 = 19
-
-# GPIO.setup(key1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(key2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(key3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(key4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-# while True:
-#         key1state = GPIO.input(key1)
-#         key2state = GPIO.input(key2)
-#         key3state = GPIO.input(key3)
-#         key4state = GPIO.input(key4)
-
-#         if key1state == False:
-#             pageNumber = pageNumber + 1
-#             d.newScreen()
-#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
-#             d.drawScreen()
-#             time.sleep(0.2)
-#         if key2state == False:
-#             d.clear()
-#             time.sleep(0.2)
-#         if key3state == False:
-#             b.changeBook(page, "Okkami to stuff", "Books/This is spice and wolf.txt")
-#             pageNumber = 0
-#             d.newScreen()
-#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
-#             d.drawScreen()
-#             time.sleep(0.2)
-#         if key4state == False:
-#             pageNumber = pageNumber - 1
-#             d.newScreen()
-#             d.addText(b.getTextOfPage(pageNumber), 10, 0)
-#             d.drawScreen()
-#             time.sleep(0.2)
-
-# epd = epd2in7.EPD()
-
-# epd.init()
-# epd.Clear(0xFF)
-
-# fontsdir = os.path.join('fonts')
-
-# font24 = ImageFont.truetype(os.path.join(fontsdir, 'Ubuntu-R.ttf'), 24)
-
-# Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
-# draw = ImageDraw.Draw(Himage)
-
-# draw.text((10, 0), 'hello worlddsdsdsaaaaaaaaaaaaaaaaaaaaaaaaaaaadsadsadadsadsadasdasdas', font = font24, fill = 0)
-
-# epd.display(epd.getbuffer(Himage))
-
-# epd.Clear(0xFF)
