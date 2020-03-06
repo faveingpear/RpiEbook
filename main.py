@@ -401,7 +401,6 @@ class menu():
 d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf") # TODO USER Defined Font
 f = files("Books/", "Fonts/")
 b = book()
-r = reading()
 s = statusbar()
 m = menu()
 m.displayOptions()
