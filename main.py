@@ -373,6 +373,8 @@ def mainloop():
             if key4state == False:
                 m.executeOption(3)
                 time.sleep(0.2)
+            
+            time.sleep(0.5)
 try:
     mainloop()
 except:
