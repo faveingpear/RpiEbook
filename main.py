@@ -1,13 +1,25 @@
 #!/usr/bin/python3
 
 # So I made way too much progress today. Right now it's functional, there is not much to it but it does what my goal was to do and I used OOP. 
-# TODO Add status bar, time, page, book, etc. Add settings menu so that stuff like font and font size can be changed. Add a way to save page numbers for all the books. Add a menu to slect between diffrent books to read (Not easy thanks to me using OOP just b.changeBook(etc))
+# TODO  book, etc. Add settings menu so that stuff like font and font size can be changed.
 # It's too late but day 1 was a hell of a lot of fun!
+
+# TODO Make a menu that used highlighted sections so I can render more than one option on the screen at once
+# TODO Work on settings menu to change fontsizes, font, words per page, etc..
+# TODO Work on making the program more stable for example making sure out of bound errors can happen
+# TODO Figure out how the licences work with the waveshare_epd driver
+# TODO Use public domain fonts because Im not sure if I am really allowed to use Ubuntu Fonts 
+# TODO LOGGING
+# TODO Working on maybe removie some class ex: reading Im not sure if it is really needed most of what It does can just be put into book
+# TODO General Optimization
+# TODO Maybe research if exception based GPIO is a thing so I don't need a mainloop to check for the GPIO every 0.5s 
+# TODO 
 
 import sys
 import os
 import textwrap
 import glob
+import logging
 
 from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
@@ -93,6 +105,56 @@ class book():
     wrapper = ""
     filePath = ""
 
+    currentpage = 0
+
+    def newBook(self, newTitle, newPath):
+        self.currentpage = 0
+        self.changeBook(page, newTitle, newPath)
+        d.newScreen()
+        d.addText(self.getTextOfPage(self.currentpage), 2, 0, True)
+        d.drawScreen()
+
+    def nextPage(self):
+        try:
+            self.currentpage = self.currentpage + 1
+            f.saveCurrentPage(self.getCurrentPage(),self.getFilePath())
+            d.newScreen()
+            d.addText(self.getTextOfPage(self.currentpage), 2, 0, True)
+            s.updateClock()
+            s.updatePage(self.currentpage)
+            s.addStatusBar()
+            d.drawScreen()
+        except:
+            self.currentPage = self.currentPage - 1
+            print("Can't go foward!")
+
+    def prevPage(self):
+        try:
+            self.currentpage = self.currentpage - 1
+            f.saveCurrentPage(self.getCurrentPage(),self.getFilePath())
+            d.newScreen()
+            d.addText(self.getTextOfPage(self.currentpage), 2, 0, True)
+            s.updateClock()
+            s.updatePage(self.currentpage)
+            s.addStatusBar()
+            d.drawScreen()
+        except:
+            self.currentPage = self.currentPage + 1
+            print("Can't go back!")
+
+    def getCurrentPage(self):
+        return self.currentpage
+
+    def startreading(self, title, pathToBook):
+        self.currentpage = f.loadCurrentPage(pathToBook)
+        self.changeBook(page, title, pathToBook)
+        d.newScreen()
+        d.addText(self.getTextOfPage(self.currentpage), 2, 0, True)
+        s.updateClock()
+        s.updatePage(self.currentpage)
+        s.addStatusBar()
+        d.drawScreen()
+
     def getFilePath(self):
         return self.filePath
 
@@ -118,59 +180,57 @@ class book():
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
 
+# class reading():
 
-class reading():
+#     currentpage = 0
 
-    currentpage = 0
-    currentbook = ""
+#     def newBook(self, newTitle, newPath):
+#         self.currentpage = 0
+#         b.changeBook(page, newTitle, newPath)
+#         d.newScreen()
+#         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+#         d.drawScreen()
 
-    def newBook(self, newTitle, newPath):
-        self.currentpage = 0
-        b.changeBook(page, newTitle, newPath)
-        d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-        d.drawScreen()
+#     def nextPage(self):
+#         try:
+#             self.currentpage = self.currentpage + 1
+#             f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
+#             d.newScreen()
+#             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+#             s.updateClock()
+#             s.updatePage(self.currentpage)
+#             s.addStatusBar()
+#             d.drawScreen()
+#         except:
+#             self.currentPage = self.currentPage - 1
+#             print("Can't go foward!")
 
-    def nextPage(self):
-        try:
-            self.currentpage = self.currentpage + 1
-            f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
-            d.newScreen()
-            d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-            s.updateClock()
-            s.updatePage(self.currentpage)
-            s.addStatusBar()
-            d.drawScreen()
-        except:
-            self.currentPage = self.currentPage - 1
-            print("Can't go foward!")
+#     def prevPage(self):
+#         try:
+#             self.currentpage = self.currentpage - 1
+#             f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
+#             d.newScreen()
+#             d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+#             s.updateClock()
+#             s.updatePage(self.currentpage)
+#             s.addStatusBar()
+#             d.drawScreen()
+#         except:
+#             self.currentPage = self.currentPage + 1
+#             print("Can't go back!")
 
-    def prevPage(self):
-        try:
-            self.currentpage = self.currentpage - 1
-            f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
-            d.newScreen()
-            d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-            s.updateClock()
-            s.updatePage(self.currentpage)
-            s.addStatusBar()
-            d.drawScreen()
-        except:
-            self.currentPage = self.currentPage + 1
-            print("Can't go back!")
+#     def getCurrentPage(self):
+#         return self.currentpage
 
-    def getCurrentPage(self):
-        return self.currentpage
-
-    def startreading(self, title, pathToBook):
-        self.currentpage = f.loadCurrentPage(pathToBook)
-        b.changeBook(page, title, pathToBook)
-        d.newScreen()
-        d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
-        s.updateClock()
-        s.updatePage(self.currentpage)
-        s.addStatusBar()
-        d.drawScreen()
+#     def startreading(self, title, pathToBook):
+#         self.currentpage = f.loadCurrentPage(pathToBook)
+#         b.changeBook(page, title, pathToBook)
+#         d.newScreen()
+#         d.addText(b.getTextOfPage(self.currentpage), 2, 0, True)
+#         s.updateClock()
+#         s.updatePage(self.currentpage)
+#         s.addStatusBar()
+#         d.drawScreen()
 
 class statusbar():
 
@@ -244,7 +304,6 @@ class files():
         self.bookPath = newBookPath
         self.fontsPath = newFontsPath
 
-
 class menu():
 
     mode = 0
@@ -305,13 +364,13 @@ class menu():
             self.setModeToFileSelection()
         elif self.mode == 1:
             if number == 0:
-                r.prevPage()
+                b.prevPage()
             elif number == 1:
                 m.setModeToFileSelection()
             elif number == 2:
-                r.nextPage()
+                b.nextPage()
             elif number == 3:
-                f.saveCurrentPage(r.getCurrentPage(),b.getFilePath())
+                f.saveCurrentPage(b.getCurrentPage(),b.getFilePath())
                 d.clear()
                 d.sleep()
                 os.system("sudo shutdown -h now")
@@ -319,7 +378,7 @@ class menu():
             if number == 0:
                 self.fileSelectScreenUp()
             elif number == 1:
-                r.startreading("Spice and wolf", self.currentDisplay[1])
+                b.startreading("Spice and wolf", self.currentDisplay[1])
                 m.setModeToReading()
             elif number == 2:
                 self.fileSelectScreenDown()
@@ -338,13 +397,27 @@ class menu():
             d.addText(self.currentDisplayToString(), 2,0, False)
             d.drawScreen()
 
-d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
+# Why did I name the all the object letters? I ask myself this questiong a lot.
+d = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf") # TODO USER Defined Font
 f = files("Books/", "Fonts/")
 b = book()
 r = reading()
 s = statusbar()
 m = menu()
 m.displayOptions()
+
+fmtstr = " Name: %(user_name)s : %(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s"
+datestr = "%m/%d/%Y %I:%M:%S %p "
+
+logging.basicConfig(
+    filename="output.log",
+    level=logging.DEBUG,
+    filemode="w",
+    format=fmtstr,
+    datefmt=datestr,
+)
+
+logging.info("Init Finished")
 
 def mainloop():
         key1 = 5
@@ -364,15 +437,19 @@ def mainloop():
             key4state = GPIO.input(key4)
 
             if key1state == False:
+                logging.info("Button 1 Pressed")
                 m.executeOption(0)
                 time.sleep(0.2)
             if key2state == False:
+                logging.info("Button 2 Pressed")
                 m.executeOption(1)
                 time.sleep(0.2)
             if key3state == False:
+                logging.info("Button 2 Pressed")
                 m.executeOption(2)
                 time.sleep(0.2)
             if key4state == False:
+                logging.info("Button 2 Pressed")
                 m.executeOption(3)
                 time.sleep(0.2)
             
@@ -380,6 +457,7 @@ def mainloop():
 try:
     mainloop()
 except:
+    logging.critical("Whopps something happended here is some info")
     d.clear()
     d.sleep()
     os.system("sudo shutdown -h now") 
