@@ -178,7 +178,7 @@ class statusbar():
         for i in range(len(self.elements)):
             statusString = statusString + str(self.elements[i]) + " "
 
-        d.addText(statusString, 2, 160, False)
+        d.addText(statusString, 2, 163, False)
 
 class files():
 
