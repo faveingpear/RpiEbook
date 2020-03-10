@@ -415,11 +415,11 @@ def mainloop():
                 time.sleep(0.2)
             
             time.sleep(0.5)
-try:
-    mainloop()
-except Exception as e:
-    logging.critical(e)
-    print(e)
-    d.clear()
-    d.sleep()
-    os.system("sudo shutdown -h now") 
+# try:
+mainloop()
+# except Exception as e:
+#     logging.critical(e)
+#     print(e)
+#     d.clear()
+#     d.sleep()
+#     os.system("sudo shutdown -h now") 
