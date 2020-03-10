@@ -20,6 +20,7 @@ import textwrap
 import glob
 import logging
 
+from PyPDF2 import PdfFileReader
 from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
 import time
@@ -84,6 +85,7 @@ class inkdisplay():
 
         self.wrapper = textwrap.TextWrapper(width=43)
 
+
 class page():
 
     # TODO Define this more!
@@ -97,7 +99,7 @@ class page():
     def __init__(self, newText, newPageNumber):
         self.text = newText
         self.pageNumber = newPageNumber
-
+	
 class book():
 
     pages = {}
@@ -144,6 +146,9 @@ class book():
             self.currentPage = self.currentPage + 1
             print("Can't go back!")
 
+    def getNumberOfPages(self):
+        return self.numberOfPages
+
     def getCurrentPage(self):
         return self.currentpage
 
@@ -181,6 +186,8 @@ class book():
 
         for i in range(len(newText)):
             self.pages[i] = pagesClass(newText[i], i)
+        
+        self.numberOfPages = len(self.pages)
 
 class statusbar():
 
@@ -190,7 +197,7 @@ class statusbar():
         self.elements[0] = time.asctime( time.localtime(time.time()) )
     
     def updatePage(self, newPage):
-        self.elements[1] = newPage
+        self.elements[1] = newPage + "/" + b.getNumberOfPages()
 
     def addStatusBar(self):
         statusString = ""
