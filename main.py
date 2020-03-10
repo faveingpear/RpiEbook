@@ -395,18 +395,22 @@ def mainloop():
 
             if key1state == False:
                 logging.info("Button 1 Pressed")
+                print("Button 1 Pressed")
                 m.executeOption(0)
                 time.sleep(0.2)
             if key2state == False:
                 logging.info("Button 2 Pressed")
+                print("Button 2 Pressed")
                 m.executeOption(1)
                 time.sleep(0.2)
             if key3state == False:
                 logging.info("Button 2 Pressed")
+                print("Button 3 Pressed")
                 m.executeOption(2)
                 time.sleep(0.2)
             if key4state == False:
                 logging.info("Button 2 Pressed")
+                print("Button 4 Pressed")
                 m.executeOption(3)
                 time.sleep(0.2)
             
