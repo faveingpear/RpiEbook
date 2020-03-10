@@ -413,8 +413,9 @@ def mainloop():
             time.sleep(0.5)
 try:
     mainloop()
-except:
-    logging.critical("Whopps something happended here is some info")
+except Exception as e:
+    logging.critical(e)
+    print(e)
     d.clear()
     d.sleep()
     os.system("sudo shutdown -h now") 
