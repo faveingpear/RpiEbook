@@ -197,7 +197,7 @@ class statusbar():
         self.elements[0] = time.asctime( time.localtime(time.time()) )
     
     def updatePage(self, newPage):
-        self.elements[1] = newPage + "/" + b.getNumberOfPages()
+        self.elements[1] = str(newPage) + "/" + str(b.getNumberOfPages())
 
     def addStatusBar(self):
         statusString = ""
