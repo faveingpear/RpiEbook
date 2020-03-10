@@ -105,7 +105,7 @@ class book():
     pages = {}
 
     title = ""
-    numberOfPages = ""
+    numberOfPages = 0
     wrapper = ""
     filePath = ""
 
