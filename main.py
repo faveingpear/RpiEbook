@@ -20,7 +20,7 @@ import textwrap
 import glob
 import logging
 
-##from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfFileReader
 from lib.waveshare_epd import epd2in7
 from PIL import Image,ImageDraw,ImageFont
 import time
