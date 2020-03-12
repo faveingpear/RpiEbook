@@ -118,7 +118,7 @@ class book():
         
         self.numberOfPages = len(self.pages)
 
-        self.currentpage = files.updatePageFile()
+        self.currentpage = files.updatePageFile(self.pathToBook,self.currentpage)
 
         self.displayPage()
 
@@ -127,7 +127,7 @@ class book():
         display.addText(self.pages[self.currentpage], 2, 0, True)
         display.drawScreen()
         #s.updateClock()
-        files.updatePageFile(self.currentpage)
+        files.updatePageFile(self.pathToBook,self.currentpage)
         #s.addStatusBar()
 
     def nextPage(self):
@@ -135,13 +135,13 @@ class book():
 
         self.displayPage()
 
-        files.updatePageFile(self.currentpage)
+        files.updatePageFile(self.pathToBook,self.currentpage)
 
     def prevPage(self):
         self.currentpage = self.currentpage - 1
 
         self.displayPage()
-        files.updatePageFile(self.currentpage)
+        files.updatePageFile(self.pathToBook,self.currentpage)
 
 class fileHandeling():
 
