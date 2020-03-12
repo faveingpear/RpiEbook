@@ -114,7 +114,7 @@ class book():
         textForBook = self.wrapper.wrap(text=files.getTextfromPath(self.pathToBook()))
 
         for i in range(len(textForBook)):
-            self.pages[i] = page(textForBook[i], i)
+            self.pages[i] = pageOfBook(textForBook[i])
         
         self.numberOfPages = len(self.pages)
 
@@ -176,7 +176,6 @@ class fileHandeling():
         print("getting page")
 
 display = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
-page = pageOfBook()
 currentBook = book()
 files = fileHandeling()
 
