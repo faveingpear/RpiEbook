@@ -179,7 +179,7 @@ display = inkdisplay(epd2in7.EPD(), "fonts", "UbuntuMono-R.ttf")
 currentBook = book()
 files = fileHandeling()
 
-currentBook.startReading("Text","Books/This is a test of a very long string of.txt")
+currentBook.startReading("Text","Books/Foxy Keith.txt")
 time.sleep(5)
 currentBook.nextPage()
 time.sleep()
