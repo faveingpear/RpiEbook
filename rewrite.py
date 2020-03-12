@@ -111,7 +111,7 @@ class book():
 
         self.wrapper = textwrap.TextWrapper(width=455)
         
-        textForBook = self.wrapper.wrap(text=files.getTextfromPath(self.pathToBook()))
+        textForBook = self.wrapper.wrap(text=files.getTextfromPath(self.pathToBook))
 
         for i in range(len(textForBook)):
             self.pages[i] = pageOfBook(textForBook[i])
