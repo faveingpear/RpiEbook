@@ -172,7 +172,7 @@ class fileHandeling():
             return text
 
     def updatePageFile(self, pathToBook, currentpage):
-        print("updating page files")
+        return 0
 
     def getPage(self, pathToBook):
         print("getting page")
