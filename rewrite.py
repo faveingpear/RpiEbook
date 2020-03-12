@@ -125,10 +125,9 @@ class book():
         self.displayPage()
 
     def displayPage(self):
-        page = self.pages[self.currentpage]
-        print(page)
+        print(self.pages[self.currentpage].getText())
         display.newScreen()
-        display.addText(page, 2, 0, True)
+        display.addText(self.pages[self.currentpage].getText(), 2, 0, True)
         display.drawScreen()
         #s.updateClock()
         files.updatePageFile(self.pathToBook,self.currentpage)
